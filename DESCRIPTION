@@ -1,0 +1,13 @@
+Package: JLLify
+Title: Apply a JLL style to ggplot objects
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Owen",
+           family = "King",
+           role = c("aut", "cre"),
+           email = "owen.king@eu.jll.com")
+Description: This package contains a number of functions to apply JLL's corporate palettes to a ggplot object. It also provides functions to apply a clean and modern look to graphs, in both a light and dark theme.  
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.0.0
+Imports: ggplot2

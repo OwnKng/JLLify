@@ -4,7 +4,7 @@
 \alias{jll_pal}
 \title{Apply the JLL palette to a plot}
 \usage{
-jll_pal(palette = "main", reverse = FALSE, ...)
+jll_pal(palette = "primary", reverse = FALSE, ...)
 }
 \description{
 This function generates the JLL color palettes. It is used by the scale_color_jll() functions, and rarely needs to be called directly.

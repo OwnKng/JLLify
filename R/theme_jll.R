@@ -20,7 +20,7 @@ jll_colors <- c(
 #' @examples
 #' jll_pal()
 
-jll_pal <- function(palette = "main", reverse = FALSE, ...) {
+jll_pal <- function(palette = "primary", reverse = FALSE, ...) {
   pal <- jll_pallete[[palette]]
 
   if (reverse) pal <- rev(pal)
@@ -45,9 +45,9 @@ jll_cols <- function(...) {
 }
 
 jll_pallete <- list(
-  'main'  = jll_cols("jll_red", "black", "concrete","steel", "stone"),
-  'main_3' = jll_cols("jll_red", "black", "stone"),
-  'main_3_dark' = jll_cols("jll_red", "stone", "violet"),
+  'primary'  = jll_cols("jll_red", "black", "concrete","steel", "stone"),
+  'primary_3' = jll_cols("jll_red", "black", "stone"),
+  'primary_3_dark' = jll_cols("jll_red", "stone", "violet"),
   'secondary' = jll_cols("violet","purple","raspberry","orange"),
   'colorfull' = jll_cols("steel", "stone","jll_red", "violet","purple","raspberry","orange"),
   'primary_secondary' = jll_cols("jll_red", "black", "concrete","steel", "stone","violet","purple","raspberry","orange"),
@@ -58,14 +58,14 @@ jll_pallete <- list(
 #' @title Apply JLL colors to a plot
 #'
 #' @description This function applies one of JLL's corporate color palletes to a ggplot object.
-#' @param palette the name of the color palette you wish to apply, defaults to "main". Other supported palettes are "main_3", "main_dark", "secondary", "colorfull", "primary_secondary" and "ten_cols"
+#' @param palette the name of the color palette you wish to apply, defaults to "primary". Other supported palettes are "primary_3", "primary_3_dark", "secondary", "colorfull", "primary_secondary" and "ten_cols"
 #' @param discrete whether the variable the palette being applied to is discrete. Defaults to TRUE.
 #' @param reverse whether to reverse the color palette. Defaults to FALSE.
 #' @export
 #' @examples
 #' scale_color_jll()
 
-scale_color_jll <- function(palette = "main", discrete = TRUE, reverse = FALSE, ...) {
+scale_color_jll <- function(palette = "primary", discrete = TRUE, reverse = FALSE, ...) {
   pal <- jll_pal(palette = palette, reverse = reverse)
 
   if (discrete) {
@@ -78,14 +78,14 @@ scale_color_jll <- function(palette = "main", discrete = TRUE, reverse = FALSE, 
 #' @title Apply JLL colors to a plot
 #'
 #' @description This function applies one of JLL's corporate color palletes to a ggplot object. It is the same as scale_color_jll(), but with the English spelling of "colour".
-#' @param palette the name of the color palette you wish to apply, defaults to "main". Other supported palettes are "main_3", "main_dark", "secondary", "colorfull", "primary_secondary" and "ten_cols"
+#' @param palette the name of the color palette you wish to apply, defaults to "primary". Other supported palettes are "primary_3", "primary_3_dark", "secondary", "colorfull", "primary_secondary" and "ten_cols"
 #' @param discrete whether the variable the palette being applied to is discrete. Defaults to TRUE.
 #' @param reverse whether to reverse the color palette. Defaults to FALSE.
 #' @export
 #' @examples
 #' scale_colour_jll()
 
-scale_colour_jll <- function(palette = "main", discrete = TRUE, reverse = FALSE, ...) {
+scale_colour_jll <- function(palette = "primary", discrete = TRUE, reverse = FALSE, ...) {
   pal <- jll_pal(palette = palette, reverse = reverse)
 
   if (discrete) {
@@ -98,14 +98,14 @@ scale_colour_jll <- function(palette = "main", discrete = TRUE, reverse = FALSE,
 #' @title Apply JLL fill to a plot
 #'
 #' @description This function applies one of JLL's corporate color palletes to a ggplot object.
-#' @param palette the name of the color palette you wish to apply, defaults to "main". Other supported palettes are "main_3", "main_dark", "secondary", "colorfull", "primary_secondary" and "ten_cols"
+#' @param palette the name of the color palette you wish to apply, defaults to "primary". Other supported palettes are "primary_3", "primary_3_dark", "secondary", "colorfull", "primary_secondary" and "ten_cols"
 #' @param discrete whether the variable the palette being applied to is discrete. Defaults to TRUE.
 #' @param reverse whether to reverse the color palette. Defaults to FALSE.
 #' @export
 #' @examples
 #' scale_fill_jll()
 
-scale_fill_jll <- function(palette = "main", discrete = TRUE, reverse = FALSE, ...) {
+scale_fill_jll <- function(palette = "primary", discrete = TRUE, reverse = FALSE, ...) {
   pal <- jll_pal(palette = palette, reverse = reverse)
 
   if (discrete) {
@@ -123,26 +123,23 @@ scale_fill_jll <- function(palette = "main", discrete = TRUE, reverse = FALSE, .
 #' theme_jll_modern()
 
 theme_jll_modern <- function(...) {
-  font <- "Source Sans Pro"
   ggplot2::theme(
-    plot.title = ggplot2::element_text(family = font,
-                                       size = 16, face = "bold",
+    plot.title = ggplot2::element_text(size = 16, face = "bold",
                                        color = "#222222"),
-    plot.subtitle = ggplot2::element_text(family = font,
-                                          size = 12,
+    plot.subtitle = ggplot2::element_text(size = 12,
                                           margin = ggplot2::margin(9, 0, 9, 0)),
     plot.caption = ggplot2::element_blank(),
     legend.position = "top",
     legend.text.align = 0,
     legend.background = ggplot2::element_blank(),
-    legend.title = ggplot2::element_text(family = font, size = 12,
+    legend.title = ggplot2::element_text(size = 12,
                                          color = "#222222"),
     legend.key = ggplot2::element_blank(),
-    legend.text = ggplot2::element_text(family = font, size = 12,
+    legend.text = ggplot2::element_text(size = 12,
                                         color = "#222222"),
-    axis.title = ggplot2::element_text(family = font, size = 12,
+    axis.title = ggplot2::element_text(size = 12,
                                        color = "#222222"),
-    axis.text = ggplot2::element_text(family = font, size = 12,
+    axis.text = ggplot2::element_text(size = 12,
                                       color = "#222222"),
     axis.text.x = ggplot2::element_text(margin = ggplot2::margin(5,
                                                                  b = 10)),
@@ -170,27 +167,25 @@ theme_jll_modern <- function(...) {
 theme_jll_modern_dark <- function(...) {
   font <- "Source Sans Pro"
   ggplot2::theme(
-    plot.title = ggplot2::element_text(family = font,
-                                       size = 16, face = "bold",
+    plot.title = ggplot2::element_text(size = 16, face = "bold",
                                        color = "#D8D8D9"),
-    plot.subtitle = ggplot2::element_text(family = font,
+    plot.subtitle = ggplot2::element_text(
                                           size = 12,
                                           color = "#D8D8D9",
                                           margin = ggplot2::margin(9, 0, 9, 0)),
-    plot.caption = ggplot2::element_text(family = font,
-                                         size = 10,
+    plot.caption = ggplot2::element_text(size = 10,
                                          color = "#D8D8D9"),
     legend.position = "top",
     legend.text.align = 0,
     legend.background = ggplot2::element_blank(),
-    legend.title = ggplot2::element_text(family = font, size = 12,
+    legend.title = ggplot2::element_text(size = 12,
                                          color = "#D8D8D9"),
     legend.key = ggplot2::element_blank(),
-    legend.text = ggplot2::element_text(family = font, size = 12,
+    legend.text = ggplot2::element_text(size = 12,
                                         color = "#D8D8D9"),
-    axis.title = ggplot2::element_text(family = font, size = 12,
+    axis.title = ggplot2::element_text(size = 12,
                                        color = "#D8D8D9"),
-    axis.text = ggplot2::element_text(family = font, size = 12,
+    axis.text = ggplot2::element_text(size = 12,
                                       color = "#D8D8D9"),
     axis.text.x = ggplot2::element_text(margin = ggplot2::margin(5,
                                                                  b = 10)),

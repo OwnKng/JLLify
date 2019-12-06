@@ -16,3 +16,9 @@ You can install the released version of JLLify from
 # install.packages("devtools")
 devtools::install_github("OwnKng/JLLify")
 ```
+
+### Release notes - 1.1
+
+Convenient wrapper functions to style a ggtern object, allowing the
+quick creation of publication ready ternary plots. See `?ggtern_base()`
+and `?theme_ternary_dark()` for more details.

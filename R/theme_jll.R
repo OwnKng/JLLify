@@ -170,9 +170,9 @@ theme_jll_modern_dark <- function(...) {
     plot.title = ggplot2::element_text(size = 16, face = "bold",
                                        color = "#D8D8D9"),
     plot.subtitle = ggplot2::element_text(
-                                          size = 12,
-                                          color = "#D8D8D9",
-                                          margin = ggplot2::margin(9, 0, 9, 0)),
+      size = 12,
+      color = "#D8D8D9",
+      margin = ggplot2::margin(9, 0, 9, 0)),
     plot.caption = ggplot2::element_text(size = 10,
                                          color = "#D8D8D9"),
     legend.position = "top",
@@ -282,4 +282,134 @@ theme_map_dark <- function(...) {
     ...
   )
 }
+
+#' @title Create a base ggtern object to plot over
+#'
+#' @description This function creates a ternary plot base using ggtern. It creates the plot and creates three segments that easilly separate zones in the data, making the chart easier to interpret
+#' @param x_color the color of the 'x' segment. Defaults to "#de8a5a"
+#' @param y_color the color of the 'y' segment. Defaults to "#CFC994"
+#' @param z_color the color of the 'z' segment. Defaults to "#008080"
+#' @param x_label the name of the 'x' label. Defaults to "Low"
+#' @param y_label the name of the 'y' label. Defaults to "Medium"
+#' @param z_label the name of the 'z' label. Defaults to "High"
+#' @export
+#' @examples
+#' ggtern_base()
+
+
+ggtern_base <- function(x_color = "#de8a5a", y_color = "#CFC994", z_color = "#008080",
+                        x_label = "Low", y_label = "Medium", z_label = "High"){
+
+  # Polygons for the shading
+  left <- tibble(x = c(0.5, 0.5, 1, 0.5),
+                     y = c(0.5, 0, 0, 0.5),
+                     z = c(0.5, 0.5, 0, 0))
+
+  right <- tibble(x = c(0.5, 0.5, 0, 0),
+                    y = c(0.5, 0, 0, 0.5),
+                    z = c(0.5, 0.5, 1, 0.5))
+
+  top <- tibble(x = c(0.5, 0.5, 0),
+                     y = c(0.5, 0.5, 1),
+                     z = c(0.5, 0, 0))
+
+  top_2 <- tibble(x = c(0.5, 0, 0),
+                       y = c(0.5, 0.5, 1),
+                       z = c(0.5, 0.5, 0))
+
+  # Create the base graph
+  suppressWarnings(
+  ggtern_base <- ggtern() +
+    annotate(geom = "text", label = y_label,
+             x = c(0.15, 0.15, 0.15),
+             y = c(0.15, 0.15, 0.15),
+             z = c(0.7, 0.7, 0.7),
+             size = 10,
+             color = y_color,
+             fontface = "bold") +
+    annotate(geom = "text", label = x_label,
+             x = c(0.7, 0.7, 0.7),
+             y = c(0.15, 0.15, 0.15),
+             z = c(0.15, 0.15, 0.15),
+             size =  10,
+             color = x_color,
+             fontface = "bold") +
+    annotate(geom = "text", label = z_label,
+             x = c(0.15, 0.15, 0.15),
+             y = c(0.7, 0.7, 0.7),
+             z = c(0.15, 0.15, 0.15),
+             size = 10,
+             color = z_color,
+             fontface = "bold") +
+    geom_polygon(data = top, aes(x, y, z),
+                 fill = z_color,
+                 alpha = 0.6) +
+    geom_polygon(data = top_2, aes(x, y, z),
+                 fill = z_color, alpha = 0.6) +
+    geom_polygon(data = left,
+                 aes(x, y, z),
+                 fill = x_color,
+                 col = "white",
+                 size = 1,
+                 alpha = 0.6) +
+    geom_polygon(data = right, aes(x, y, z),
+                 fill = y_color,
+                 col = "white",
+                 size = 1,
+                 alpha = 0.6)
+  )
+
+  return(ggtern_base)
+
+}
+
+#' @title Style a the ternary plot
+#'
+#' @description This function applies a modern look to a ggtern object
+#' @param x_color the color of the 'x' segment. Defaults to "#de8a5a"
+#' @param y_color the color of the 'y' segment. Defaults to "#CFC994"
+#' @param z_color the color of the 'z' segment. Defaults to "#008080"
+#' @export
+#' @examples
+#' theme_ternary_dark()
+
+
+theme_ternary_dark <- function(plot, x_color = "#de8a5a", y_color = "#CFC994", z_color = "#008080", ...) {
+    theme(
+    # Re-color the axis ticks
+    tern.axis.ticks.minor = element_blank(),
+    tern.axis.ticks.length.major = unit(1, "cm"),
+    tern.axis.ticks.major = element_line(size = 4),
+
+    # Re-color lines and text
+
+    tern.axis.line.L = element_line(color = x_color, size = 2),
+    tern.axis.text.L = element_text(color = x_color, size = 24),
+    tern.axis.title.L = element_text(color = x_color, size = 24),
+    tern.axis.ticks.major.L = element_line(color = x_color),
+    tern.axis.line.R = element_line(color = y_color, size = 2),
+    tern.axis.text.R = element_text(color = y_color, size = 24),
+    tern.axis.title.R = element_text(color = y_color, size = 24),
+    tern.axis.ticks.major.R = element_line(color = y_color),
+    tern.axis.line.T = element_line(color = z_color, size = 2),
+    tern.axis.text.T = element_text(color = z_color, size = 24),
+    tern.axis.ticks.major.T = element_line(color = z_color),
+    tern.axis.title.T = element_text(color = z_color, size = 24),
+
+    # Re-color the plot background
+    tern.plot.background = element_rect(fill = "#0E0E16", color = NA),
+    tern.panel.background = element_rect(fill = "#0E0E16", color = NA),
+    tern.panel.grid.major =  element_line(size = 0.5, color = "lightgrey"),
+    tern.panel.grid.minor = element_line(size = 0.5, color = "lightgrey"),
+
+    plot.background = element_rect(fill = "#0E0E16"),
+    strip.background = element_rect(fill = "#0E0E16"),
+
+    # Re-color the facet texts
+    strip.text = element_text(color = "white", size = 24, face = "bold", hjust = 0),
+    strip.text.x = element_text(color = "white", hjust = 0.5),
+    ...
+  )
+}
+
 

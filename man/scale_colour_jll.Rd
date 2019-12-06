@@ -7,7 +7,7 @@
 scale_colour_jll(palette = "primary", discrete = TRUE, reverse = FALSE, ...)
 }
 \arguments{
-\item{palette}{the name of the color palette you wish to apply, defaults to "main". Other supported palettes are "main_3", "main_dark", "secondary", "colorfull", "primary_secondary" and "ten_cols"}
+\item{palette}{the name of the color palette you wish to apply, defaults to "primary". Other supported palettes are "primary_3", "primary_3_dark", "secondary", "colorfull", "primary_secondary" and "ten_cols"}
 
 \item{discrete}{whether the variable the palette being applied to is discrete. Defaults to TRUE.}
 

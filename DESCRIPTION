@@ -1,6 +1,6 @@
 Package: JLLify
 Title: Apply a JLL style to ggplot objects
-Version: 0.0.0.9000
+Version: 0.1.1
 Authors@R: 
     person(given = "Owen",
            family = "King",

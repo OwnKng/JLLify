@@ -7,8 +7,8 @@
 theme_ternary_dark(
   plot,
   x_color = "#de8a5a",
-  y_color = "#CFC994",
-  z_color = "#008080",
+  y_color = "#008080",
+  z_color = "#CFC994",
   ...
 )
 }

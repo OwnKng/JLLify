@@ -124,22 +124,22 @@ scale_fill_jll <- function(palette = "primary", discrete = TRUE, reverse = FALSE
 
 theme_jll_modern <- function(...) {
   ggplot2::theme(
-    plot.title = ggplot2::element_text(size = 16, face = "bold",
+    plot.title = ggplot2::element_text(size = 18, face = "bold",
                                        color = "#222222"),
-    plot.subtitle = ggplot2::element_text(size = 12,
+    plot.subtitle = ggplot2::element_text(size = 16,
                                           margin = ggplot2::margin(9, 0, 9, 0)),
     plot.caption = ggplot2::element_blank(),
     legend.position = "top",
     legend.text.align = 0,
     legend.background = ggplot2::element_blank(),
-    legend.title = ggplot2::element_text(size = 12,
+    legend.title = ggplot2::element_text(size = 16,
                                          color = "#222222"),
     legend.key = ggplot2::element_blank(),
-    legend.text = ggplot2::element_text(size = 12,
+    legend.text = ggplot2::element_text(size = 16,
                                         color = "#222222"),
-    axis.title = ggplot2::element_text(size = 12,
+    axis.title = ggplot2::element_text(size = 16,
                                        color = "#222222"),
-    axis.text = ggplot2::element_text(size = 12,
+    axis.text = ggplot2::element_text(size = 16,
                                       color = "#222222"),
     axis.text.x = ggplot2::element_text(margin = ggplot2::margin(5,
                                                                  b = 10)),
@@ -153,7 +153,7 @@ theme_jll_modern <- function(...) {
     panel.grid.major.x = ggplot2::element_blank(),
     panel.background = ggplot2::element_blank(),
     strip.background = ggplot2::element_rect(fill = "white"),
-    strip.text = ggplot2::element_text(size = 11, hjust = 0),
+    strip.text = ggplot2::element_text(size = 16, hjust = 0),
     strip.text.x = ggplot2::element_text(hjust = 0.5))
 }
 
@@ -170,22 +170,22 @@ theme_jll_modern_dark <- function(...) {
     plot.title = ggplot2::element_text(size = 16, face = "bold",
                                        color = "#D8D8D9"),
     plot.subtitle = ggplot2::element_text(
-      size = 12,
+      size = 16,
       color = "#D8D8D9",
       margin = ggplot2::margin(9, 0, 9, 0)),
-    plot.caption = ggplot2::element_text(size = 10,
+    plot.caption = ggplot2::element_text(size = 12,
                                          color = "#D8D8D9"),
     legend.position = "top",
     legend.text.align = 0,
     legend.background = ggplot2::element_blank(),
-    legend.title = ggplot2::element_text(size = 12,
+    legend.title = ggplot2::element_text(size = 16,
                                          color = "#D8D8D9"),
     legend.key = ggplot2::element_blank(),
-    legend.text = ggplot2::element_text(size = 12,
+    legend.text = ggplot2::element_text(size = 16,
                                         color = "#D8D8D9"),
-    axis.title = ggplot2::element_text(size = 12,
+    axis.title = ggplot2::element_text(size = 16,
                                        color = "#D8D8D9"),
-    axis.text = ggplot2::element_text(size = 12,
+    axis.text = ggplot2::element_text(size = 16,
                                       color = "#D8D8D9"),
     axis.text.x = ggplot2::element_text(margin = ggplot2::margin(5,
                                                                  b = 10)),
@@ -200,7 +200,7 @@ theme_jll_modern_dark <- function(...) {
     panel.background = ggplot2::element_rect(fill = "#0E0E16", colour = NA),
     plot.background = ggplot2::element_rect(fill = "#0E0E16", colour = NA),
     strip.background = ggplot2::element_rect(fill = "#0E0E16"),
-    strip.text = ggplot2::element_text(color = "#D8D8D9", size = 11, hjust = 0),
+    strip.text = ggplot2::element_text(color = "#D8D8D9", size = 16, hjust = 0),
     strip.text.x = ggplot2::element_text(hjust = 0.5))
 }
 
@@ -297,8 +297,8 @@ theme_map_dark <- function(...) {
 #' ggtern_base()
 
 
-ggtern_base <- function(x_color = "#de8a5a", y_color = "#CFC994", z_color = "#008080",
-                        x_label = "Low", y_label = "Medium", z_label = "High"){
+ggtern_base <- function(x_color = "#de8a5a", y_color = "#008080", z_color = "#CFC994",
+                        x_label = "Low", y_label = "High", z_label = "Medium"){
 
   # Polygons for the shading
   left <- tibble(x = c(0.5, 0.5, 1, 0.5),
@@ -320,12 +320,12 @@ ggtern_base <- function(x_color = "#de8a5a", y_color = "#CFC994", z_color = "#00
   # Create the base graph
   suppressWarnings(
   ggtern_base <- ggtern() +
-    annotate(geom = "text", label = y_label,
+    annotate(geom = "text", label = z_label,
              x = c(0.15, 0.15, 0.15),
              y = c(0.15, 0.15, 0.15),
              z = c(0.7, 0.7, 0.7),
              size = 10,
-             color = y_color,
+             color = z_color,
              fontface = "bold") +
     annotate(geom = "text", label = x_label,
              x = c(0.7, 0.7, 0.7),
@@ -334,18 +334,18 @@ ggtern_base <- function(x_color = "#de8a5a", y_color = "#CFC994", z_color = "#00
              size =  10,
              color = x_color,
              fontface = "bold") +
-    annotate(geom = "text", label = z_label,
+    annotate(geom = "text", label = y_label,
              x = c(0.15, 0.15, 0.15),
              y = c(0.7, 0.7, 0.7),
              z = c(0.15, 0.15, 0.15),
              size = 10,
-             color = z_color,
+             color = y_color,
              fontface = "bold") +
     geom_polygon(data = top, aes(x, y, z),
-                 fill = z_color,
+                 fill = y_color,
                  alpha = 0.6) +
     geom_polygon(data = top_2, aes(x, y, z),
-                 fill = z_color, alpha = 0.6) +
+                 fill = y_color, alpha = 0.6) +
     geom_polygon(data = left,
                  aes(x, y, z),
                  fill = x_color,
@@ -353,7 +353,7 @@ ggtern_base <- function(x_color = "#de8a5a", y_color = "#CFC994", z_color = "#00
                  size = 1,
                  alpha = 0.6) +
     geom_polygon(data = right, aes(x, y, z),
-                 fill = y_color,
+                 fill = z_color,
                  col = "white",
                  size = 1,
                  alpha = 0.6)

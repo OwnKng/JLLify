@@ -6,11 +6,11 @@
 \usage{
 ggtern_base(
   x_color = "#de8a5a",
-  y_color = "#CFC994",
-  z_color = "#008080",
+  y_color = "#008080",
+  z_color = "#CFC994",
   x_label = "Low",
-  y_label = "Medium",
-  z_label = "High"
+  y_label = "High",
+  z_label = "Medium"
 )
 }
 \arguments{

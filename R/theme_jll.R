@@ -374,7 +374,7 @@ ggtern_base <- function(x_color = "#de8a5a", y_color = "#008080", z_color = "#CF
 #' theme_ternary_dark()
 
 
-theme_ternary_dark <- function(plot, x_color = "#de8a5a", y_color = "#CFC994", z_color = "#008080", ...) {
+theme_ternary_dark <- function(plot, x_color = "#de8a5a", y_color = "#008080", z_color = "#CFC994", ...) {
     theme(
     # Re-color the axis ticks
     tern.axis.ticks.minor = element_blank(),
@@ -387,14 +387,14 @@ theme_ternary_dark <- function(plot, x_color = "#de8a5a", y_color = "#CFC994", z
     tern.axis.text.L = element_text(color = x_color, size = 24),
     tern.axis.title.L = element_text(color = x_color, size = 24),
     tern.axis.ticks.major.L = element_line(color = x_color),
-    tern.axis.line.R = element_line(color = y_color, size = 2),
-    tern.axis.text.R = element_text(color = y_color, size = 24),
-    tern.axis.title.R = element_text(color = y_color, size = 24),
-    tern.axis.ticks.major.R = element_line(color = y_color),
-    tern.axis.line.T = element_line(color = z_color, size = 2),
-    tern.axis.text.T = element_text(color = z_color, size = 24),
-    tern.axis.ticks.major.T = element_line(color = z_color),
-    tern.axis.title.T = element_text(color = z_color, size = 24),
+    tern.axis.line.R = element_line(color = z_color, size = 2),
+    tern.axis.text.R = element_text(color = z_color, size = 24),
+    tern.axis.title.R = element_text(color = z_color, size = 24),
+    tern.axis.ticks.major.R = element_line(color = z_color),
+    tern.axis.line.T = element_line(color = y_color, size = 2),
+    tern.axis.text.T = element_text(color = y_color, size = 24),
+    tern.axis.ticks.major.T = element_line(color = y_color),
+    tern.axis.title.T = element_text(color = y_color, size = 24),
 
     # Re-color the plot background
     tern.plot.background = element_rect(fill = "#0E0E16", color = NA),

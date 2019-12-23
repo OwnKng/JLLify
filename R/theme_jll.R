@@ -382,7 +382,6 @@ theme_ternary_dark <- function(plot, x_color = "#de8a5a", y_color = "#008080", z
     tern.axis.ticks.major = element_line(size = 4),
 
     # Re-color lines and text
-
     tern.axis.line.L = element_line(color = x_color, size = 2),
     tern.axis.text.L = element_text(color = x_color, size = 24),
     tern.axis.title.L = element_text(color = x_color, size = 24),
@@ -395,6 +394,8 @@ theme_ternary_dark <- function(plot, x_color = "#de8a5a", y_color = "#008080", z
     tern.axis.text.T = element_text(color = y_color, size = 24),
     tern.axis.ticks.major.T = element_line(color = y_color),
     tern.axis.title.T = element_text(color = y_color, size = 24),
+    plot.title = element_text(size = 28, color = "white"),
+    plot.subtitle = element_text(size = 24, color = "white"),
 
     # Re-color the plot background
     tern.plot.background = element_rect(fill = "#0E0E16", color = NA),

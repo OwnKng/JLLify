@@ -3,6 +3,7 @@
 export(ggtern_base)
 export(jll_cols)
 export(jll_pal)
+export(jll_palette_cols)
 export(scale_color_jll)
 export(scale_colour_jll)
 export(scale_fill_jll)

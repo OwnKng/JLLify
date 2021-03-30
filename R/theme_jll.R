@@ -8,9 +8,18 @@ jll_colors <- c(
   'violet' = "#7874B5",
   'purple' = "#602375",
   'raspberry' = "#9A054A",
-  'orange' = "#ED700A",
   'water' = "#D3E3EA",
-  'olive' = "#BBCEA4"
+  'olive' = "#BBCEA4",
+  "mid_concrete" = '#d4d5d6',
+  "mid_purple" = '#9870a6',
+  "mid_steel" = '#999a9d',
+  "light_stone" = '#e6e1d8',
+  "light_blue" = '#abc0e7',
+  "yellow" = '#ffeeab',
+  "light_orange" = '#ffb87f',
+  "blue" = "#6d7db3",
+  "orange" = "#ed700a",
+  'light_concrete' = '#ededed'
 )
 
 #' @title Apply the JLL palette to a plot
@@ -20,12 +29,12 @@ jll_colors <- c(
 #' @examples
 #' jll_pal()
 
-jll_pal <- function(palette = "primary", reverse = FALSE, ...) {
+jll_pal <- function(palette = "data_viz", reverse = FALSE, ...) {
   pal <- jll_pallete[[palette]]
 
   if (reverse) pal <- rev(pal)
 
-  colorRampPalette(pal, ...)
+  grDevices::colorRampPalette(pal, ...)
 }
 
 #' @title Apply the JLL palette to a plot
@@ -45,15 +54,31 @@ jll_cols <- function(...) {
 }
 
 jll_pallete <- list(
+  'data_viz' = jll_cols('mid_concrete', 'mid_purple', 'steel', 'mid_steel', 'light_stone', 'light_blue', 'yellow', 'light_orange'),
+  'diverging' = jll_cols('blue', 'light_concrete', 'oranage'),
   'primary'  = jll_cols("jll_red", "black", "concrete","steel", "stone"),
   'primary_3' = jll_cols("jll_red", "black", "stone"),
   'primary_3_dark' = jll_cols("jll_red", "stone", "violet"),
   'secondary' = jll_cols("violet","purple","raspberry","orange"),
   'colorfull' = jll_cols("steel", "stone","jll_red", "violet","purple","raspberry","orange"),
-  'primary_secondary' = jll_cols("jll_red", "black", "concrete","steel", "stone","violet","purple","raspberry","orange"),
-  'ten_cols' = jll_cols("jll_red", "steel", "stone", "concrete", "violet", "purple",
-                        "raspberry", "orange", "water", "olive")
+  'primary_secondary' = jll_cols("jll_red", "black", "concrete","steel", "stone","violet","purple","raspberry","orange")
 )
+
+#' @title Apply the JLL palette to a plot
+#'
+#' @description This function retrieves the colors within one of the JLL palettes. It is useful when applying a subset of the palette to a particular plot.
+#' @export
+#' @examples
+#'
+jll_palette_cols <- function(palette = 'data_viz', n = FALSE) {
+  if(n == FALSE) {
+    pal <- jll_pallete[[palette]]
+  } else {
+    pal <- jll_pallete[[palette]][1:5]
+  }
+
+  as.vector(pal)
+}
 
 #' @title Apply JLL colors to a plot
 #'
@@ -65,53 +90,53 @@ jll_pallete <- list(
 #' @examples
 #' scale_color_jll()
 
-scale_color_jll <- function(palette = "primary", discrete = TRUE, reverse = FALSE, ...) {
+scale_color_jll <- function(palette = "data_viz", discrete = TRUE, reverse = FALSE, ...) {
   pal <- jll_pal(palette = palette, reverse = reverse)
 
   if (discrete) {
-    discrete_scale("colour", paste0("drsimonj_", palette), palette = pal, ...)
+    ggplot2::discrete_scale("colour", paste0("drsimonj_", palette), palette = pal, ...)
   } else {
-    scale_color_gradientn(colours = pal(256), ...)
+    ggplot2::scale_color_gradientn(colours = pal(256), ...)
   }
 }
 
 #' @title Apply JLL colors to a plot
 #'
 #' @description This function applies one of JLL's corporate color palletes to a ggplot object. It is the same as scale_color_jll(), but with the English spelling of "colour".
-#' @param palette the name of the color palette you wish to apply, defaults to "primary". Other supported palettes are "primary_3", "primary_3_dark", "secondary", "colorfull", "primary_secondary" and "ten_cols"
+#' @param palette the name of the color palette you wish to apply, defaults to "data_viz". Other supported palettes are "primary", "primary_3", "primary_3_dark", "secondary", "colorfull", "primary_secondary" and "ten_cols"
 #' @param discrete whether the variable the palette being applied to is discrete. Defaults to TRUE.
 #' @param reverse whether to reverse the color palette. Defaults to FALSE.
 #' @export
 #' @examples
 #' scale_colour_jll()
 
-scale_colour_jll <- function(palette = "primary", discrete = TRUE, reverse = FALSE, ...) {
+scale_colour_jll <- function(palette = "data_viz", discrete = TRUE, reverse = FALSE, ...) {
   pal <- jll_pal(palette = palette, reverse = reverse)
 
   if (discrete) {
-    discrete_scale("colour", paste0("drsimonj_", palette), palette = pal, ...)
+    ggplot2::discrete_scale("colour", paste0("drsimonj_", palette), palette = pal, ...)
   } else {
-    scale_color_gradientn(colours = pal(256), ...)
+    ggplot2::scale_color_gradientn(colours = pal(256), ...)
   }
 }
 
 #' @title Apply JLL fill to a plot
 #'
 #' @description This function applies one of JLL's corporate color palletes to a ggplot object.
-#' @param palette the name of the color palette you wish to apply, defaults to "primary". Other supported palettes are "primary_3", "primary_3_dark", "secondary", "colorfull", "primary_secondary" and "ten_cols"
+#' @param palette the name of the color palette you wish to apply, defaults to "data_viz". Other supported palettes are "primary", "primary_3", "primary_3_dark", "secondary", "colorfull", "primary_secondary" and "ten_cols"
 #' @param discrete whether the variable the palette being applied to is discrete. Defaults to TRUE.
 #' @param reverse whether to reverse the color palette. Defaults to FALSE.
 #' @export
 #' @examples
 #' scale_fill_jll()
 
-scale_fill_jll <- function(palette = "primary", discrete = TRUE, reverse = FALSE, ...) {
+scale_fill_jll <- function(palette = "data_viz", discrete = TRUE, reverse = FALSE, ...) {
   pal <- jll_pal(palette = palette, reverse = reverse)
 
   if (discrete) {
-    discrete_scale("fill", paste0("drsimonj_", palette), palette = pal, ...)
+    ggplot2::discrete_scale("fill", paste0("drsimonj_", palette), palette = pal, ...)
   } else {
-    scale_fill_gradientn(colours = pal(256), ...)
+    ggplot2::scale_fill_gradientn(colours = pal(256), ...)
   }
 }
 
@@ -197,9 +222,9 @@ theme_jll_modern_dark <- function(...) {
     panel.grid.minor = ggplot2::element_blank(),
     panel.grid.major.y = ggplot2::element_line(color = "#898B8E"),
     panel.grid.major.x = ggplot2::element_blank(),
-    panel.background = ggplot2::element_rect(fill = "#0E0E16", colour = NA),
-    plot.background = ggplot2::element_rect(fill = "#0E0E16", colour = NA),
-    strip.background = ggplot2::element_rect(fill = "#0E0E16"),
+    panel.background = ggplot2::element_rect(fill = "#1e202e", colour = NA),
+    plot.background = ggplot2::element_rect(fill = "#1e202e", colour = NA),
+    strip.background = ggplot2::element_rect(fill = "#1e202e"),
     strip.text = ggplot2::element_text(color = "#D8D8D9", size = 16, hjust = 0),
     strip.text.x = ggplot2::element_text(hjust = 0.5))
 }
@@ -295,7 +320,6 @@ theme_map_dark <- function(...) {
 #' @export
 #' @examples
 #' ggtern_base()
-
 
 ggtern_base <- function(x_color = "#de8a5a", y_color = "#008080", z_color = "#CFC994",
                         x_label = "Low", y_label = "High", z_label = "Medium"){

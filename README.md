@@ -9,7 +9,7 @@ both light and dark themes.
 
 ## Installation
 
-You can install the released version of JLLify from
+You can install latest version of JLLify from
 [GitHub](https://github.com/) with:
 
 ``` r
@@ -17,8 +17,61 @@ You can install the released version of JLLify from
 devtools::install_github("OwnKng/JLLify")
 ```
 
-### Release notes - 1.1
+## Applying a JLL look to a ggplot graph
 
-Convenient wrapper functions to style a ggtern object, allowing the
-quick creation of publication ready ternary plots. See `?ggtern_base()`
-and `?theme_ternary_dark()` for more details.
+You can apply a JLL-look to a graph using the `theme_jll_modern()` and
+`scale_color_jll()` functions. JLLify also provides a `scale_fill_jll()`
+function for fill aesthetics.
+
+``` r
+library(ggplot2)
+library(JLLify)
+
+diamonds <- dplyr::sample_n(diamonds, size = 2000)
+
+ggplot(data = diamonds, aes(price, carat)) + 
+  geom_point(aes(color = cut)) +
+  theme_jll_modern() + 
+  scale_color_jll(palette = 'primary')
+```
+
+<img src="man/figures/README-unnamed-chunk-2-1.svg" width="100%" />
+
+JLLify provides a ‘dark mode’ theme, which you can apply with the
+function `theme_jll_modern_dark()`.
+
+``` r
+ggplot(data = diamonds, aes(price, carat)) + 
+  geom_point(aes(color = cut)) +
+  theme_jll_modern_dark() +
+  scale_color_jll(palette = 'primary')
+```
+
+<img src="man/figures/README-unnamed-chunk-3-1.svg" width="100%" /> \#\#
+Applying the dataviz color palette The `scale_color_jll` and
+`scale_fill_jll` functions have different palette options. You can
+manually specify these, or use the default ‘data\_viz’ palette.
+
+``` r
+ggplot(data = diamonds, aes(price, carat)) + 
+  geom_point(aes(color = cut)) +
+  theme_jll_modern() + 
+  scale_color_jll(palette = 'data_viz')
+```
+
+<img src="man/figures/README-unnamed-chunk-4-1.svg" width="100%" />
+
+You can also retrieve part of a color palette using the
+`jll_palette_cols()` function. This is useful if you know the number of
+colors used in a plot, and want to apply them in the correct order.
+
+``` r
+cols <- jll_palette_cols(palette = 'data_viz', n = 5)
+
+ggplot(data = diamonds, aes(price, carat)) + 
+  geom_point(aes(color = cut)) +
+  theme_jll_modern() + 
+  scale_color_manual(values = cols)
+```
+
+<img src="man/figures/README-unnamed-chunk-5-1.svg" width="100%" />

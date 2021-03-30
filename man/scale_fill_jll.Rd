@@ -4,10 +4,10 @@
 \alias{scale_fill_jll}
 \title{Apply JLL fill to a plot}
 \usage{
-scale_fill_jll(palette = "primary", discrete = TRUE, reverse = FALSE, ...)
+scale_fill_jll(palette = "data_viz", discrete = TRUE, reverse = FALSE, ...)
 }
 \arguments{
-\item{palette}{the name of the color palette you wish to apply, defaults to "primary". Other supported palettes are "primary_3", "primary_3_dark", "secondary", "colorfull", "primary_secondary" and "ten_cols"}
+\item{palette}{the name of the color palette you wish to apply, defaults to "data_viz". Other supported palettes are "primary", "primary_3", "primary_3_dark", "secondary", "colorfull", "primary_secondary" and "ten_cols"}
 
 \item{discrete}{whether the variable the palette being applied to is discrete. Defaults to TRUE.}
 

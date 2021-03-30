@@ -4,7 +4,7 @@
 \alias{scale_color_jll}
 \title{Apply JLL colors to a plot}
 \usage{
-scale_color_jll(palette = "primary", discrete = TRUE, reverse = FALSE, ...)
+scale_color_jll(palette = "data_viz", discrete = TRUE, reverse = FALSE, ...)
 }
 \arguments{
 \item{palette}{the name of the color palette you wish to apply, defaults to "primary". Other supported palettes are "primary_3", "primary_3_dark", "secondary", "colorfull", "primary_secondary" and "ten_cols"}
